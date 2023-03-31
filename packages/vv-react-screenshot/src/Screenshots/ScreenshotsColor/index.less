@@ -1,0 +1,35 @@
+@import '../var.less';
+
+.screenshots-color {
+  height: @sizecolor-size;
+  display: flex;
+  align-items: center;
+  margin-right: 4px;
+
+  &-item {
+    width: @sizecolor-size;
+    height: @sizecolor-size;
+    cursor: pointer;
+    position: relative;
+    margin: 0 5px;
+    border-radius: 50%;
+    &:after {
+      content: '';
+      display: none;
+      width: 16px;
+      height: 16px;
+      top: 2px;
+      position: absolute;
+      border-radius: 50%;
+      left: 2px;
+      border: 1px solid #fff;
+    }
+  }
+
+  &-active {
+    &:before,
+    &:after {
+      display: block;
+    }
+  }
+}

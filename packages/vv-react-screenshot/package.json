@@ -1,0 +1,67 @@
+{
+  "name": "vv-react-screenshot",
+  "version": "1.0.0",
+  "description": "a screenshot cropper tool by react",
+  "main": "./lib/react-screenshots.cjs.js",
+  "module": "./lib/react-screenshots.es.js",
+  "types": "./lib/types/exports.d.ts",
+  "files": [
+    "lib/**",
+    "electron/**"
+  ],
+  "scripts": {
+    "start": "vite",
+    "dev": "tsc --watch",
+    "build": "npm run lint && npm run clean && npm run build:web && npm run build:electron && npm run build:lib",
+    "build:web": "vite build --mode web",
+    "build:electron": "vite build --mode electron",
+    "build:lib": "vite build --mode lib && tsc --project tsconfig.build.json",
+    "lint": "eslint src --ext .js,.ts,.jsx,.tsx --fix",
+    "preview": "vite preview",
+    "clean": "rimraf dist lib electron"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VincentHuang218/vv-screenshots.git"
+  },
+  "keywords": [
+    "screenshot",
+    "cropper",
+    "react"
+  ],
+  "author": "nashaofu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/VincentHuang218/vv-screenshots/issues"
+  },
+  "homepage": "https://github.com/VincentHuang218/vv-screenshots#readme",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "peerDependencies": {
+    "react": "^16.8 || ^17.0",
+    "react-dom": "^16.8 || ^17.0"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.38",
+    "@types/react-dom": "^17.0.11",
+    "@typescript-eslint/eslint-plugin": "^5.10.0",
+    "@typescript-eslint/parser": "^5.10.0",
+    "@vitejs/plugin-react": "^1.1.4",
+    "eslint": "^8.20.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-config-standard-jsx": "^11.0.0",
+    "eslint-config-standard-react": "^11.0.1",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-react": "^7.30.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "less": "^4.1.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.5.5",
+    "vite": "^2.7.13"
+  }
+}

@@ -1,0 +1,26 @@
+@import '../var.less';
+
+.screenshots-operations {
+  position: absolute;
+  left: 0;
+  top: 0;
+  will-change: transform;
+
+  &-buttons {
+    display: flex;
+    align-items: center;
+    padding: 8px 9px;
+    border: 1px solid rgba(255,255,255,0.80);
+    box-shadow: 0 7px 11px 0 rgba(0,0,0,0.10);
+    overflow: hidden;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.90);
+  }
+
+  &-divider {
+    background-color: #ddd;
+    width: 1px;
+    height: @button-size;
+    margin: 0 3px;
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "folders": [
+    {
+      "path": "."
+    },
+    {
+      "path": "packages/vv-react-screenshot"
+    },
+    {
+      "path": "packages/vv-screenshot"
+    }
+  ],
+  "settings": {}
+}
