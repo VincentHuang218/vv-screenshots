@@ -236,6 +236,7 @@ export default function Rectangle (): ReactElement {
   return (
     <ScreenshotsButton
       title={lang.operation_rectangle_title}
+      id='operation_rectangle_title'
       icon='icon-rectangle'
       checked={checked}
       onClick={onSelectRectangle}

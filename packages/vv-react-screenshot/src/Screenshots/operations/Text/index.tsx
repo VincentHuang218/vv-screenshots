@@ -254,6 +254,7 @@ export default function Text (): ReactElement {
     <>
       <ScreenshotsButton
         title={lang.operation_text_title}
+        id='operation_text_title'
         icon='icon-text'
         checked={checked}
         onClick={onSelectText}

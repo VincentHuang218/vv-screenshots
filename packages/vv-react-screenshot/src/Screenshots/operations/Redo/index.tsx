@@ -14,6 +14,7 @@ export default function Redo (): ReactElement {
   return (
     <ScreenshotsButton
       title={lang.operation_redo_title}
+      id='operation_redo_title'
       icon='icon-redo'
       disabled={!history.stack.length || history.stack.length - 1 === history.index}
       onClick={onClick}

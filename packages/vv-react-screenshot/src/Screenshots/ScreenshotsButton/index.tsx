@@ -1,9 +1,11 @@
 import React, { memo, ReactElement, ReactNode, useCallback } from 'react'
 import ScreenshotsOption from '../ScreenshotsOption'
+import { Tooltip } from 'react-tooltip'
 import './index.less'
 
 export interface ScreenshotsButtonProps {
   title: string
+  id: string
   icon: string
   checked?: boolean
   disabled?: boolean
@@ -13,6 +15,7 @@ export interface ScreenshotsButtonProps {
 
 export default memo(function ScreenshotsButton ({
   title,
+  id,
   icon,
   checked,
   disabled,
@@ -40,8 +43,9 @@ export default memo(function ScreenshotsButton ({
 
   return (
     <ScreenshotsOption open={checked} content={option}>
-      <div className={classNames.join(' ')} title={title} onClick={onButtonClick}>
+      <div className={classNames.join(' ')} onClick={onButtonClick} data-tooltip-id={id} data-tooltip-content={title}>
         <span className={icon} />
+        <Tooltip id={id} className='vv-react-tooltip' />
       </div>
     </ScreenshotsOption>
   )

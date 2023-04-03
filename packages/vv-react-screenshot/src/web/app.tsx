@@ -32,7 +32,7 @@ export default function App (): ReactElement {
         width={window.innerWidth}
         height={window.innerHeight}
         lang={{
-          operation_rectangle_title: 'Rectangle'
+          operation_rectangle_title: '矩形'
         }}
         onSave={onSave}
         onCancel={onCancel}

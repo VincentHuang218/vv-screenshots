@@ -236,6 +236,7 @@ export default function Ellipse (): ReactElement {
   return (
     <ScreenshotsButton
       title={lang.operation_ellipse_title}
+      id='operation_ellipse_title'
       icon='icon-ellipse'
       checked={checked}
       onClick={onSelectEllipse}

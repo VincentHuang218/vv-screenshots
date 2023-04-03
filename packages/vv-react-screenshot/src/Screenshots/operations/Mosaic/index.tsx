@@ -214,6 +214,7 @@ export default function Mosaic (): ReactElement {
   return (
     <ScreenshotsButton
       title={lang.operation_mosaic_title}
+      id='operation_mosaic_title'
       icon='icon-mosaic'
       checked={checked}
       onClick={onSelectMosaic}

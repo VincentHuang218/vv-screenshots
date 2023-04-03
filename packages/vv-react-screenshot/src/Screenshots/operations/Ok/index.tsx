@@ -33,5 +33,5 @@ export default function Ok (): ReactElement {
     })
   }, [canvasContextRef, historyDispatcher, image, width, height, history, bounds, call, reset])
 
-  return <ScreenshotsButton title={lang.operation_ok_title} icon='icon-ok' onClick={onClick} />
+  return <ScreenshotsButton title={lang.operation_ok_title} id='operation_ok_title' icon='icon-ok' onClick={onClick} />
 }

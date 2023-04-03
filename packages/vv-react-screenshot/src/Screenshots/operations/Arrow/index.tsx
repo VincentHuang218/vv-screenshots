@@ -184,6 +184,7 @@ export default function Arrow (): ReactElement {
   return (
     <ScreenshotsButton
       title={lang.operation_arrow_title}
+      id='operation_arrow_title'
       icon='icon-arrow'
       checked={checked}
       onClick={onSelectArrow}

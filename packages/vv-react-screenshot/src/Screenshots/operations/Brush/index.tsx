@@ -160,6 +160,7 @@ export default function Brush (): ReactElement {
   return (
     <ScreenshotsButton
       title={lang.operation_brush_title}
+      id='operation_brush_title'
       icon='icon-brush'
       checked={checked}
       onClick={onSelectBrush}

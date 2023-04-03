@@ -33,5 +33,5 @@ export default function Save (): ReactElement {
     })
   }, [canvasContextRef, historyDispatcher, image, width, height, history, bounds, call, reset])
 
-  return <ScreenshotsButton title={lang.operation_save_title} icon='icon-save' onClick={onClick} />
+  return <ScreenshotsButton title={lang.operation_save_title} id='operation_save_title' icon='icon-save' onClick={onClick} />
 }
