@@ -8,7 +8,7 @@ import './index.less'
 export const ScreenshotsOperationsCtx = React.createContext<Bounds | null>(null)
 
 export default memo(function ScreenshotsOperations (): ReactElement | null {
-  const { width, height } = useStore()
+  const { width, height, operation } = useStore()
   const [bounds] = useBounds()
   const [operationsRect, setOperationsRect] = useState<Bounds | null>(null)
   const [position, setPosition] = useState<Position | null>(null)
@@ -42,8 +42,12 @@ export default memo(function ScreenshotsOperations (): ReactElement | null {
       x = width - elRect.width
     }
 
-    if (y > height - elRect.height) {
-      y = height - elRect.height - 10
+    if (y > height - elRect.height || (operation && y > height - elRect.height - 55)) {
+      y = bounds.y - elRect.height - 10
+    }
+
+    if (y < 0) {
+      y = 0
     }
 
     // 小数存在精度问题
@@ -69,7 +73,7 @@ export default memo(function ScreenshotsOperations (): ReactElement | null {
         height: elRect.height
       })
     }
-  })
+  }, [bounds, height, operationsRect, position, width, operation])
 
   if (!bounds) {
     return null

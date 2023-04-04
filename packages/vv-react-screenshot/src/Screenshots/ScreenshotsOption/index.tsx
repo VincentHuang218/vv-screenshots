@@ -24,7 +24,7 @@ export default memo(function ScreenshotsOption ({ open, content, children }: Scr
   const operationsRect = useContext(ScreenshotsOperationsCtx)
   const [placement, setPlacement] = useState<Placement>(Placement.Bottom)
   const [position, setPosition] = useState<Position | null>(null)
-  const [offsetX, setOffsetX] = useState<number>(0)
+  const [offsetX, setOffsetX] = useState<number | string>(0)
 
   const getPopoverEl = () => {
     if (!popoverRef.current) {
@@ -52,39 +52,66 @@ export default memo(function ScreenshotsOption ({ open, content, children }: Scr
     const childrenRect = childrenRef.current.getBoundingClientRect()
     const contentRect = contentRef.current.getBoundingClientRect()
 
-    let currentPlacement = placement
+    const currentPlacement = placement
     let x = childrenRect.left + childrenRect.width / 2
-    let y = childrenRect.top + childrenRect.height
+    const y = operationsRect.y + operationsRect.height + 10
     let currentOffsetX = offsetX
+    // 获取截图工具栏的中点x坐标，用于跟点击的坐标进行比对
+    const operationsMiddleXPoint = operationsRect.x + operationsRect.width / 2
+    // 获取工具选项栏的一半宽度
+    const contentHalfWidth = contentRect.width / 2
+    // 获取x坐标到工具栏x坐标的距离
+    const xToOperationsXPoint = x - operationsRect.x
+
+    // 比对x和operationsMiddleXPoint坐标
+    if (x <= operationsMiddleXPoint) { // 说明位于工具栏的左侧
+      if (xToOperationsXPoint <= contentHalfWidth) {
+        x = operationsRect.x
+        currentOffsetX = xToOperationsXPoint
+      } else {
+        x = x - contentHalfWidth
+        currentOffsetX = '50%'
+      }
+    }
+
+    if (x > operationsMiddleXPoint) { // 说明位于工具栏的右侧
+      if (operationsRect.x + operationsRect.width - x <= contentHalfWidth) {
+        currentOffsetX = x
+        x = operationsRect.x + operationsRect.width - contentRect.width
+      } else {
+        x = x - contentHalfWidth
+        currentOffsetX = '50%'
+      }
+    }
 
     // 如果左右都越界了，就以左边界为准
-    if (x + contentRect.width / 2 > operationsRect.x + operationsRect.width) {
-      const ox = x
-      x = operationsRect.x + operationsRect.width - contentRect.width / 2
-      currentOffsetX = ox - x
-    }
+    // if (x + contentRect.width / 2 > operationsRect.x + operationsRect.width) {
+    //   const ox = x
+    //   x = operationsRect.x + operationsRect.width - contentRect.width / 2
+    //   currentOffsetX = ox - x
+    // }
 
-    // 左边不能超出
-    if (x < operationsRect.x + contentRect.width / 2) {
-      const ox = x
-      x = operationsRect.x + contentRect.width / 2
-      currentOffsetX = ox - x
-    }
+    // // 左边不能超出
+    // if (x < operationsRect.x + contentRect.width / 2) {
+    //   const ox = x
+    //   x = operationsRect.x + contentRect.width / 2
+    //   currentOffsetX = ox - x
+    // }
 
     // 如果上下都越界了，就以上边界为准
-    if (y > window.innerHeight - contentRect.height) {
-      if (currentPlacement === Placement.Bottom) {
-        currentPlacement = Placement.Top
-      }
-      y = childrenRect.top - contentRect.height
-    }
+    // if (y > window.innerHeight - contentRect.height) {
+    //   if (currentPlacement === Placement.Bottom) {
+    //     currentPlacement = Placement.Top
+    //   }
+    //   y = childrenRect.top - contentRect.height
+    // }
 
-    if (y < 0) {
-      if (currentPlacement === Placement.Top) {
-        currentPlacement = Placement.Bottom
-      }
-      y = childrenRect.top + childrenRect.height
-    }
+    // if (y < 0) {
+    //   if (currentPlacement === Placement.Top) {
+    //     currentPlacement = Placement.Bottom
+    //   }
+    //   y = childrenRect.top + childrenRect.height
+    // }
     if (currentPlacement !== placement) {
       setPlacement(currentPlacement)
     }
@@ -118,7 +145,7 @@ export default memo(function ScreenshotsOption ({ open, content, children }: Scr
             data-placement={placement}
           >
             <div className='screenshots-option-container'>{content}</div>
-            <div className='screenshots-option-arrow' style={{ marginLeft: offsetX }} />
+            <div className='screenshots-option-arrow' style={{ left: offsetX }} />
           </div>,
           getPopoverEl()
         )}
