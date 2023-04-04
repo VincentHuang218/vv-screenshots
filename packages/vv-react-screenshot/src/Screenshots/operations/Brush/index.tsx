@@ -47,11 +47,12 @@ export default function Brush (): ReactElement {
 
   const onSelectBrush = useCallback(() => {
     if (checked) {
+      operationDispatcher.set('')
       return
     }
     selectBrush()
     historyDispatcher.clearSelect()
-  }, [checked, selectBrush, historyDispatcher])
+  }, [checked, selectBrush, historyDispatcher, operationDispatcher])
 
   const onDrawSelect = useCallback(
     (action: HistoryItemSource<unknown, unknown>, e: MouseEvent) => {

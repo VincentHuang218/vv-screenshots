@@ -57,11 +57,12 @@ export default function Arrow (): ReactElement {
 
   const onSelectArrow = useCallback(() => {
     if (checked) {
+      operationDispatcher.set('')
       return
     }
     selectArrow()
     historyDispatcher.clearSelect()
-  }, [checked, selectArrow, historyDispatcher])
+  }, [checked, selectArrow, historyDispatcher, operationDispatcher])
 
   const onDrawSelect = useCallback(
     (action: HistoryItemSource<unknown, unknown>, e: MouseEvent) => {

@@ -69,11 +69,12 @@ export default function Mosaic (): ReactElement {
 
   const onSelectMosaic = useCallback(() => {
     if (checked) {
+      operationDispatcher.set('')
       return
     }
     selectMosaic()
     historyDispatcher.clearSelect()
-  }, [checked, selectMosaic, historyDispatcher])
+  }, [checked, selectMosaic, historyDispatcher, operationDispatcher])
 
   const onMousedown = useCallback(
     (e: MouseEvent): void => {
