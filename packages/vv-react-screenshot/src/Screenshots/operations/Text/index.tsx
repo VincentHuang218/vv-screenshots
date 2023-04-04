@@ -5,7 +5,7 @@ import useCursor from '../../hooks/useCursor'
 import useHistory from '../../hooks/useHistory'
 import useOperation from '../../hooks/useOperation'
 import ScreenshotsButton from '../../ScreenshotsButton'
-import ScreenshotsSizeColor from '../../ScreenshotsSizeColor'
+import ScreenshotsTextSizeColor from '../../ScreenshotsTextSizeColor'
 import { HistoryItemEdit, HistoryItemSource, HistoryItemType, Point } from '../../types'
 import ScreenshotsTextarea from '../../ScreenshotsTextarea'
 import useBounds from '../../hooks/useBounds'
@@ -38,9 +38,12 @@ export interface TextareaBounds {
 }
 
 const sizes: Record<number, number> = {
-  3: 18,
-  6: 32,
-  9: 46
+  12: 14,
+  14: 16,
+  16: 18,
+  18: 20,
+  20: 22,
+  22: 24
 }
 
 function draw (ctx: CanvasRenderingContext2D, action: HistoryItemSource<TextData, TextEditData>) {
@@ -102,7 +105,7 @@ export default function Text (): ReactElement {
   const [operation, operationDispatcher] = useOperation()
   const [, cursorDispatcher] = useCursor()
   const canvasContextRef = useCanvasContextRef()
-  const [size, setSize] = useState(3)
+  const [size, setSize] = useState(12)
   const [color, setColor] = useState('#F55656')
   const textRef = useRef<HistoryItemSource<TextData, TextEditData> | null>(null)
   const textEditRef = useRef<HistoryItemEdit<TextEditData, TextData> | null>(null)
@@ -260,7 +263,7 @@ export default function Text (): ReactElement {
         checked={checked}
         onClick={onSelectText}
         option={
-          <ScreenshotsSizeColor size={size} color={color} onSizeChange={onSizeChange} onColorChange={onColorChange} />
+          <ScreenshotsTextSizeColor size={size} color={color} onSizeChange={onSizeChange} onColorChange={onColorChange} />
         }
       />
       {checked && textareaBounds && (
