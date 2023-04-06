@@ -1,6 +1,6 @@
 {
   "name": "vv-react-screenshot",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "a screenshot cropper tool by react",
   "main": "./lib/react-screenshots.cjs.js",
   "module": "./lib/react-screenshots.es.js",
@@ -34,7 +34,7 @@
   "bugs": {
     "url": "https://github.com/VincentHuang218/vv-screenshots/issues"
   },
-  "homepage": "https://github.com/VincentHuang218/vv-screenshots#readme",
+  "homepage": "https://github.com/VincentHuang218/vv-screenshots/tree/main/packages/vv-react-screenshot#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },

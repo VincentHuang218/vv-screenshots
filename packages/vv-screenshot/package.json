@@ -1,6 +1,6 @@
 {
   "name": "vv-screenshot",
-  "version": "0.0.2",
+  "version": "1.0.1",
   "description": "electron 截图插件",
   "types": "lib/screenshots.d.ts",
   "main": "lib/screenshots.js",
@@ -25,12 +25,12 @@
     "screenshot",
     "cropper"
   ],
-  "author": "nashaofu",
+  "author": "hjc",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/VincentHuang218/vv-screenshots/issues"
   },
-  "homepage": "https://github.com/VincentHuang218/vv-screenshots#readme",
+  "homepage": "https://github.com/VincentHuang218/vv-screenshots/tree/main/packages/vv-screenshot#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
@@ -38,7 +38,7 @@
     "debug": "^4.3.3",
     "fs-extra": "^10.1.0",
     "node-screenshots": "^0.1.1",
-    "vv-react-screenshot": "^1.0.0"
+    "vv-react-screenshot": "^1.0.1"
   },
   "peerDependencies": {
     "electron": ">=14"

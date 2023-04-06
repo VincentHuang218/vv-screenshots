@@ -62,8 +62,8 @@ export default class Screenshots extends Events {
     this.logger = opts?.logger || debug('electron-screenshots')
     this.singleWindow = opts?.singleWindow || false
     this.listenIpc()
-    // this.$view.webContents.loadURL(`file://${require.resolve('vv-react-screenshot/electron/electron.html')}`)
-    this.$view.webContents.loadURL('http://localhost:3017/')
+    this.$view.webContents.loadURL(`file://${require.resolve('vv-react-screenshot/electron/electron.html')}`)
+    // this.$view.webContents.loadURL('http://localhost:3017/')
     if (opts?.lang) {
       this.setLang(opts.lang)
     }
