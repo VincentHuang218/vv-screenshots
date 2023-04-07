@@ -59,11 +59,11 @@ export default class Screenshots extends Events {
 
   constructor (opts?: ScreenshotsOpts) {
     super()
-    this.logger = opts?.logger || debug('electron-screenshots')
+    this.logger = opts?.logger || debug('vv-screenshot')
     this.singleWindow = opts?.singleWindow || false
     this.listenIpc()
-    this.$view.webContents.loadURL(`file://${require.resolve('vv-react-screenshot/electron/electron.html')}`)
-    // this.$view.webContents.loadURL('http://localhost:3017/')
+    // this.$view.webContents.loadURL(`file://${require.resolve('vv-react-screenshot/electron/electron.html')}`)
+    this.$view.webContents.loadURL('http://localhost:3003/')
     if (opts?.lang) {
       this.setLang(opts.lang)
     }
@@ -248,7 +248,6 @@ export default class Screenshots extends Events {
       if (!capturer) {
         throw new Error(`NodeScreenshots.fromDisplay(${display.id}) get null`)
       }
-      console.log(55556666, capturer)
 
       const image = await capturer.capture()
       return `data:image/png;base64,${image.toString('base64')}`

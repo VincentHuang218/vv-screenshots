@@ -42,7 +42,7 @@ app.whenReady().then(() => {
     show: true
   })
   mainWin.removeMenu()
-  mainWin.loadURL('http://localhost:3017/')
+  mainWin.loadURL('http://localhost:3003/')
 })
 
 app.on('window-all-closed', () => {
