@@ -178,6 +178,7 @@ export default memo(
           transform: bounds ? `translate(${bounds.x}px, ${bounds.y}px)` : 'none'
         }}
       >
+        <div className='screenshots-canvas-info'>{bounds?.width} * {bounds?.height}</div>
         <div className='screenshots-canvas-body'>
           {/* 保证一开始就显示，减少加载时间 */}
           <img

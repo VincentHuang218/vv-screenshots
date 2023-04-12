@@ -11,8 +11,6 @@ app.whenReady().then(() => {
   screenshots.$view.webContents.openDevTools()
 
   globalShortcut.register('CommandOrControl+Alt+A', () => {
-    console.log(5555)
-
     screenshots.startCapture()
   })
 
@@ -42,7 +40,7 @@ app.whenReady().then(() => {
     show: true
   })
   mainWin.removeMenu()
-  mainWin.loadURL('http://localhost:3003/')
+  mainWin.loadURL('https://baidu.com/')
 })
 
 app.on('window-all-closed', () => {
