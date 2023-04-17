@@ -28,6 +28,7 @@ export default function Screenshots ({ url, width, height, lang, className, ...p
     stack: []
   })
   const [bounds, setBounds] = useState<Bounds | null>(null)
+  const [status, setStatus] = useState<number>(0)
   const [cursor, setCursor] = useState<string | undefined>('move')
   const [operation, setOperation] = useState<string | undefined>(undefined)
 
@@ -44,6 +45,7 @@ export default function Screenshots ({ url, width, height, lang, className, ...p
     canvasContextRef,
     history,
     bounds,
+    status,
     cursor,
     operation
   }
@@ -62,6 +64,7 @@ export default function Screenshots ({ url, width, height, lang, className, ...p
     call,
     setHistory,
     setBounds,
+    setStatus,
     setCursor,
     setOperation
   }
@@ -79,6 +82,7 @@ export default function Screenshots ({ url, width, height, lang, className, ...p
       stack: []
     })
     setBounds(null)
+    setStatus(0)
     setCursor('move')
     setOperation(undefined)
   }

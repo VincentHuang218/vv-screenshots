@@ -15,25 +15,8 @@ app.whenReady().then(() => {
   })
 
   // 防止不能关闭截图界面
-  globalShortcut.register('ctrl+shift+q', () => {
-    app.quit()
-  })
-
-  // 点击确定按钮回调事件
-  screenshots.on('ok', (e, buffer, bounds) => {
-    console.log('capture', buffer, bounds)
-  })
-  // 点击取消按钮回调事件
-  screenshots.on('cancel', () => {
-    console.log('capture', 'cancel1')
-    screenshots.setLang({
-      operation_ellipse_title: 'ellipse',
-      operation_rectangle_title: 'rectangle'
-    })
-  })
-  // 点击保存按钮回调事件
-  screenshots.on('save', (e, buffer, bounds) => {
-    console.log('capture', buffer, bounds)
+  globalShortcut.register('Esc', () => {
+    screenshots.endCapture()
   })
 
   const mainWin = new BrowserWindow({

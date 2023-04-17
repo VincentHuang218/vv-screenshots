@@ -75,6 +75,10 @@ export default class Screenshots extends Events {
   public async startCapture (): Promise<void> {
     this.logger('startCapture')
 
+    if (this.$win?.isVisible()) {
+      return
+    }
+
     const display = getDisplay()
 
     const [imageUrl] = await Promise.all([this.capture(display), this.isReady])

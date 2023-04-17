@@ -1,5 +1,6 @@
 import React, { memo, MouseEvent, ReactElement, useCallback, useEffect, useRef, useState } from 'react'
 import useBounds from '../hooks/useBounds'
+import useStatus from '../hooks/useStatus'
 import useStore from '../hooks/useStore'
 import OperationButtons from '../operations'
 import { Bounds, Position } from '../types'
@@ -10,6 +11,7 @@ export const ScreenshotsOperationsCtx = React.createContext<Bounds | null>(null)
 export default memo(function ScreenshotsOperations (): ReactElement | null {
   const { width, height, operation } = useStore()
   const [bounds] = useBounds()
+  const [status] = useStatus()
   const [operationsRect, setOperationsRect] = useState<Bounds | null>(null)
   const [position, setPosition] = useState<Position | null>(null)
 
@@ -85,7 +87,7 @@ export default memo(function ScreenshotsOperations (): ReactElement | null {
         ref={elRef}
         className='screenshots-operations'
         style={{
-          visibility: position ? 'visible' : 'hidden',
+          visibility: position && status === 1 ? 'visible' : 'hidden',
           transform: `translate(${position?.x ?? 0}px, ${position?.y ?? 0}px)`
         }}
         onDoubleClick={onDoubleClick}

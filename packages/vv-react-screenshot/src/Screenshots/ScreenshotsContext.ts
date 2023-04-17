@@ -12,6 +12,7 @@ export interface ScreenshotsContextStore {
   canvasContextRef: CanvasContextRef
   history: History
   bounds: Bounds | null
+  status: number;
   cursor?: string
   operation?: string
 }
@@ -20,6 +21,7 @@ export interface ScreenshotsContextDispatcher {
   call?: <T>(funcName: string, ...args: T[]) => void
   setHistory?: Dispatch<SetStateAction<History>>
   setBounds?: Dispatch<SetStateAction<Bounds | null>>
+  setStatus?: Dispatch<SetStateAction<number>>
   setCursor?: Dispatch<SetStateAction<string | undefined>>
   setOperation?: Dispatch<SetStateAction<string | undefined>>
 }
@@ -43,6 +45,7 @@ export default React.createContext<ScreenshotsContextValue>({
       stack: []
     },
     bounds: null,
+    status: 0,
     cursor: 'move',
     operation: undefined
   },
@@ -50,6 +53,7 @@ export default React.createContext<ScreenshotsContextValue>({
     call: undefined,
     setHistory: undefined,
     setBounds: undefined,
+    setStatus: undefined,
     setCursor: undefined,
     setOperation: undefined
   }

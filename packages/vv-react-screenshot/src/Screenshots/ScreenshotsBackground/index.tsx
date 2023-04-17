@@ -1,5 +1,6 @@
 import React, { memo, ReactElement, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import useBounds from '../hooks/useBounds'
+import useStatus from '../hooks/useStatus'
 import useStore from '../hooks/useStore'
 import ScreenshotsMagnifier from '../ScreenshotsMagnifier'
 import { Point, Position } from '../types'
@@ -9,6 +10,7 @@ import './index.less'
 export default memo(function ScreenshotsBackground (): ReactElement | null {
   const { url, image, width, height } = useStore()
   const [bounds, boundsDispatcher] = useBounds()
+  const [status, statusDispatcher] = useStatus()
 
   const elRef = useRef<HTMLDivElement>(null)
   const pointRef = useRef<Point | null>(null)
@@ -91,6 +93,7 @@ export default memo(function ScreenshotsBackground (): ReactElement | null {
           x: e.clientX,
           y: e.clientY
         })
+        statusDispatcher?.set(1)
       }
       pointRef.current = null
       isMoveRef.current = false
@@ -102,10 +105,10 @@ export default memo(function ScreenshotsBackground (): ReactElement | null {
       window.removeEventListener('mousemove', onMouseMove)
       window.removeEventListener('mouseup', onMouseUp)
     }
-  }, [updateBounds])
+  }, [statusDispatcher, updateBounds])
 
   useLayoutEffect(() => {
-    if (!image || bounds) {
+    if (!image) {
       // 重置位置
       setPosition(null)
     }
@@ -120,7 +123,7 @@ export default memo(function ScreenshotsBackground (): ReactElement | null {
     <div ref={elRef} className='screenshots-background' onMouseDown={onMouseDown}>
       <img className='screenshots-background-image' src={url} />
       <div className='screenshots-background-mask' />
-      {position && !bounds && <ScreenshotsMagnifier x={position?.x} y={position?.y} />}
+      {position && status === 0 && <ScreenshotsMagnifier x={position?.x} y={position?.y} />}
     </div>
   )
 })
