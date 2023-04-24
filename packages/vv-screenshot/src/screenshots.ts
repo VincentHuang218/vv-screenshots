@@ -221,7 +221,7 @@ export default class Screenshots extends Events {
       width: display.width,
       height: display.height
     })
-    this.$win.setAlwaysOnTop(true)
+    this.$win.setAlwaysOnTop(true, 'screen-saver')
     this.$win.show()
   }
 
@@ -349,7 +349,7 @@ export default class Screenshots extends Events {
       if (!this.$win) {
         return
       }
-      this.$win.setAlwaysOnTop(true)
+      this.$win.setAlwaysOnTop(true, 'screen-saver')
       if (canceled || !filePath) {
         return
       }
