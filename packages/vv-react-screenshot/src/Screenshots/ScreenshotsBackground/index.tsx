@@ -3,11 +3,15 @@ import useBounds from '../hooks/useBounds'
 import useStatus from '../hooks/useStatus'
 import useStore from '../hooks/useStore'
 import ScreenshotsMagnifier from '../ScreenshotsMagnifier'
-import { Point, Position } from '../types'
+import { Point, Position, Display } from '../types'
 import getBoundsByPoints from './getBoundsByPoints'
 import './index.less'
 
-export default memo(function ScreenshotsBackground (): ReactElement | null {
+interface ScreenshotsBackgroundProps {
+  display: Display
+}
+
+export default memo(function ScreenshotsBackground ({ display }: ScreenshotsBackgroundProps): ReactElement | null {
   const { url, image, width, height } = useStore()
   const [bounds, boundsDispatcher] = useBounds()
   const [status, statusDispatcher] = useStatus()
@@ -107,6 +111,12 @@ export default memo(function ScreenshotsBackground (): ReactElement | null {
     }
   }, [statusDispatcher, updateBounds])
 
+  useEffect(() => {
+    if (display) {
+      setPosition(display.point)
+    }
+  }, [display])
+
   useLayoutEffect(() => {
     if (!image) {
       // 重置位置
@@ -123,7 +133,7 @@ export default memo(function ScreenshotsBackground (): ReactElement | null {
     <div ref={elRef} className='screenshots-background' onMouseDown={onMouseDown}>
       <img className='screenshots-background-image' src={url} />
       <div className='screenshots-background-mask' />
-      {position && status === 0 && <ScreenshotsMagnifier x={position?.x} y={position?.y} />}
+      {position && status === 0 && <ScreenshotsMagnifier x={position?.x} y={position?.y} display={display} />}
     </div>
   )
 })

@@ -1,16 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import Screenshots from '../Screenshots'
-import { Bounds } from '../Screenshots/types'
+import { Bounds, Display } from '../Screenshots/types'
 import { Lang } from '../Screenshots/zh_CN'
 import './app.less'
-
-export interface Display {
-  id: number
-  x: number
-  y: number
-  width: number
-  height: number
-}
 
 export default function App (): JSX.Element {
   const [url, setUrl] = useState<string | undefined>(undefined)
@@ -94,6 +86,7 @@ export default function App (): JSX.Element {
         onSave={onSave}
         onCancel={onCancel}
         onOk={onOk}
+        display={display}
       />
     </div>
   )

@@ -51,3 +51,18 @@ export interface Bounds {
 }
 
 export type Position = Point
+
+interface Rectangle {
+  height: number;
+  width: number;
+  x: number;
+  y: number;
+}
+
+interface DisplayRect extends Rectangle {
+  id: number
+  scaleFactor: number;
+  point: Point
+}
+
+export type Display = DisplayRect | undefined;

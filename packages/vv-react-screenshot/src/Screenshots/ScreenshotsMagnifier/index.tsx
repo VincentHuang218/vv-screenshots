@@ -1,18 +1,32 @@
-import React, { memo, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import React, { memo, useEffect, useLayoutEffect, useRef, useState, useMemo } from 'react'
 import useLang from '../hooks/useLang'
 import useStore from '../hooks/useStore'
-import { Position } from '../types'
+import { Position, Display } from '../types'
 import './index.less'
 
 export interface ScreenshotsMagnifierProps {
   x: number
   y: number
+  display: Display
 }
 
 const magnifierWidth = 100
 const magnifierHeight = 80
 
-export default memo(function ScreenshotsMagnifier ({ x, y }: ScreenshotsMagnifierProps) {
+// 计算不同屏幕的鼠标坐标
+function calcCoord (x: number, y: number, display: Display) {
+  const { x: px = 0, y: py = 0 } = display as { x: number; y: number } || {}
+  let tx = x
+  let ty = y
+  if (x < 0) {
+    tx = Math.abs(px) + x
+    ty = Math.abs(py) + y
+  }
+
+  return { x: tx, y: ty }
+}
+
+export default memo(function ScreenshotsMagnifier ({ x, y, display }: ScreenshotsMagnifierProps) {
   const { width, height, image } = useStore()
   const lang = useLang()
   const [position, setPosition] = useState<Position | null>(null)
@@ -21,15 +35,22 @@ export default memo(function ScreenshotsMagnifier ({ x, y }: ScreenshotsMagnifie
   const ctxRef = useRef<CanvasRenderingContext2D | null>(null)
   const [rgb, setRgb] = useState('000000')
 
+  const coords = useMemo(() => {
+    return calcCoord(x, y, display)
+  }, [x, y, display])
+
   useLayoutEffect(() => {
     if (!elRef.current) {
       return
     }
     const elRect = elRef.current.getBoundingClientRect()
-    let tx = x + 20
+    const x = coords.x
+    const y = coords.y
+    let tx = x + 10
     let ty = y + 20
+
     if (tx + elRect.width > width) {
-      tx = x - elRect.width - 20
+      tx = x - elRect.width - 10
     }
     if (ty + elRect.height > height) {
       ty = y - elRect.height - 20
@@ -45,7 +66,7 @@ export default memo(function ScreenshotsMagnifier ({ x, y }: ScreenshotsMagnifie
       x: tx,
       y: ty
     })
-  }, [width, height, x, y])
+  }, [width, height, coords])
 
   useEffect(() => {
     if (!image || !canvasRef.current) {
@@ -60,10 +81,13 @@ export default memo(function ScreenshotsMagnifier ({ x, y }: ScreenshotsMagnifie
       return
     }
 
+    const x = coords.x
+    const y = coords.y
     const ctx = ctxRef.current
     ctx.clearRect(0, 0, magnifierWidth, magnifierHeight)
     const rx = image.naturalWidth / width
     const ry = image.naturalHeight / height
+
     // 显示原图比例
     ctx.drawImage(
       image,
@@ -83,7 +107,7 @@ export default memo(function ScreenshotsMagnifier ({ x, y }: ScreenshotsMagnifie
       .toUpperCase()
 
     setRgb(hex)
-  }, [width, height, image, x, y])
+  }, [width, height, image, coords])
 
   return (
     <div
@@ -103,7 +127,7 @@ export default memo(function ScreenshotsMagnifier ({ x, y }: ScreenshotsMagnifie
       </div>
       <div className='screenshots-magnifier-footer'>
         <div className='screenshots-magnifier-footer-item'>
-          {lang.magnifier_position_label}: ({x},{y})
+          {lang.magnifier_position_label}: ({coords.x},{coords.y})
         </div>
         <div className='screenshots-magnifier-footer-item'>RGB: #{rgb}</div>
       </div>

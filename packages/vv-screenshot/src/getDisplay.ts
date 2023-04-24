@@ -1,8 +1,9 @@
-import { Rectangle, screen } from 'electron'
+import { Point, Rectangle, screen } from 'electron'
 
 export interface Display extends Rectangle {
   id: number
-  scaleFactor: number
+  scaleFactor: number;
+  point: Point
 }
 
 export default (): Display => {
@@ -16,6 +17,7 @@ export default (): Display => {
     y: Math.floor(bounds.y),
     width: Math.floor(bounds.width),
     height: Math.floor(bounds.height),
-    scaleFactor
+    scaleFactor,
+    point
   }
 }

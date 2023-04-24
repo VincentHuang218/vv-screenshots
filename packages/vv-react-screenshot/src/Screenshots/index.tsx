@@ -6,7 +6,7 @@ import ScreenshotsBackground from './ScreenshotsBackground'
 import ScreenshotsCanvas from './ScreenshotsCanvas'
 import ScreenshotsContext from './ScreenshotsContext'
 import ScreenshotsOperations from './ScreenshotsOperations'
-import { Bounds, Emiter, History } from './types'
+import { Bounds, Emiter, History, Display } from './types'
 import useGetLoadedImage from './useGetLoadedImage'
 import zhCN, { Lang } from './zh_CN'
 
@@ -16,10 +16,11 @@ export interface ScreenshotsProps {
   height: number
   lang?: Partial<Lang>
   className?: string
+  display?: Display
   [key: string]: unknown
 }
 
-export default function Screenshots ({ url, width, height, lang, className, ...props }: ScreenshotsProps): ReactElement {
+export default function Screenshots ({ url, width, height, lang, className, display, ...props }: ScreenshotsProps): ReactElement {
   const image = useGetLoadedImage(url)
   const canvasContextRef = useRef<CanvasRenderingContext2D>(null)
   const emiterRef = useRef<Emiter>({})
@@ -150,7 +151,7 @@ export default function Screenshots ({ url, width, height, lang, className, ...p
         onDoubleClick={onDoubleClick}
         onContextMenu={onContextMenu}
       >
-        <ScreenshotsBackground />
+        <ScreenshotsBackground display={display} />
         <ScreenshotsCanvas ref={canvasContextRef} />
         <ScreenshotsOperations />
       </div>
