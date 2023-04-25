@@ -36,7 +36,7 @@
   },
   "homepage": "https://github.com/VincentHuang218/vv-screenshots/tree/main/packages/vv-react-screenshot#readme",
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+    "registry": "http://172.16.6.49:4873"
   },
   "peerDependencies": {
     "react": "^16.8 || ^17.0",
@@ -66,5 +66,6 @@
   },
   "dependencies": {
     "react-tooltip": "^5.10.4"
-  }
+  },
+  "gitHead": "b6d1d35f67f91cd0d7436ffb17c8ad06ccfeeb3c"
 }
