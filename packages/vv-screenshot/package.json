@@ -1,6 +1,6 @@
 {
   "name": "@vv/screenshot",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "electron 截图插件",
   "types": "lib/screenshots.d.ts",
   "main": "lib/screenshots.js",
@@ -35,7 +35,7 @@
     "registry": "http://172.16.6.49:4873"
   },
   "dependencies": {
-    "@vv/react-screenshot": "^1.0.5",
+    "@vv/react-screenshot": "^1.1.0",
     "debug": "^4.3.3",
     "fs-extra": "^10.1.0",
     "node-screenshots": "^0.1.1"
