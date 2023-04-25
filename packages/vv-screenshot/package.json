@@ -1,5 +1,5 @@
 {
-  "name": "vv-screenshot",
+  "name": "@vv/screenshot",
   "version": "1.0.4",
   "description": "electron 截图插件",
   "types": "lib/screenshots.d.ts",
@@ -38,7 +38,7 @@
     "debug": "^4.3.3",
     "fs-extra": "^10.1.0",
     "node-screenshots": "^0.1.1",
-    "vv-react-screenshot": "^1.0.4"
+    "@vv/react-screenshot": "^1.0.4"
   },
   "peerDependencies": {
     "electron": ">=14"
@@ -58,5 +58,5 @@
     "rimraf": "^3.0.2",
     "typescript": "^4.5.5"
   },
-  "gitHead": "b6d1d35f67f91cd0d7436ffb17c8ad06ccfeeb3c"
+  "gitHead": "af3b8e1424af3c0f0505ae58c500c80c00088c4c"
 }

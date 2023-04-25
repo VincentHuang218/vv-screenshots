@@ -1,5 +1,5 @@
 {
-  "name": "vv-react-screenshot",
+  "name": "@vv/react-screenshot",
   "version": "1.0.4",
   "description": "a screenshot cropper tool by react",
   "main": "./lib/react-screenshots.cjs.js",
@@ -29,7 +29,7 @@
     "cropper",
     "react"
   ],
-  "author": "nashaofu",
+  "author": "hjc",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/VincentHuang218/vv-screenshots/issues"
@@ -67,5 +67,5 @@
   "dependencies": {
     "react-tooltip": "^5.10.4"
   },
-  "gitHead": "b6d1d35f67f91cd0d7436ffb17c8ad06ccfeeb3c"
+  "gitHead": "af3b8e1424af3c0f0505ae58c500c80c00088c4c"
 }

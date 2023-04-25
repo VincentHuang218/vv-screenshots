@@ -46,11 +46,11 @@ export default memo(function ScreenshotsMagnifier ({ x, y, display }: Screenshot
     const elRect = elRef.current.getBoundingClientRect()
     const x = coords.x
     const y = coords.y
-    let tx = x + 15
+    let tx = x + 16
     let ty = y + 20
 
     if (tx + elRect.width > width) {
-      tx = x - elRect.width - 15
+      tx = x - elRect.width - 16
     }
     if (ty + elRect.height > height) {
       ty = y - elRect.height - 20
