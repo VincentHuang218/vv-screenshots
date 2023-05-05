@@ -157,7 +157,7 @@ export default class Screenshots extends Events {
         autoHideMenuBar: true,
         transparent: true,
         // mac resizable 设置为 false 会导致页面崩溃
-        resizable: process.platform !== 'darwin',
+        resizable: false,
         movable: false,
         // focusable: true, 否则窗口不能及时响应esc按键，输入框也不能输入
         focusable: true,
