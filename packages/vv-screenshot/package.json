@@ -1,6 +1,6 @@
 {
   "name": "@vv/screenshot",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "electron 截图插件",
   "types": "lib/screenshots.d.ts",
   "main": "lib/screenshots.js",
