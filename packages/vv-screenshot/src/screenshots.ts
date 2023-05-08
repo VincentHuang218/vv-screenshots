@@ -343,7 +343,11 @@ export default class Screenshots extends Events {
       this.$win.setAlwaysOnTop(false)
 
       const { canceled, filePath } = await dialog.showSaveDialog(this.$win, {
-        defaultPath: `${year}${month}${date}${hours}${minutes}${seconds}${milliseconds}.png`
+        defaultPath: `${year}${month}${date}${hours}${minutes}${seconds}${milliseconds}.png`,
+        filters: [{
+          name: 'PNG File (*.png)',
+          extensions: ['png']
+        }]
       })
 
       if (!this.$win) {
