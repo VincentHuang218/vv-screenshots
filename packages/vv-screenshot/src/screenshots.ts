@@ -355,6 +355,7 @@ export default class Screenshots extends Events {
       }
       this.$win.setAlwaysOnTop(true, 'screen-saver')
       if (canceled || !filePath) {
+        this.endCapture()
         return
       }
 
